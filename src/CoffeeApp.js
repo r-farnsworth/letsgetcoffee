@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import CoffeeShopList from "./CoffeeShopList";
 import * as coffeeShops from "./CoffeeShops.json";
+import MapStyles from "./MapStyles.js";
 
 class CoffeeApp extends Component {
     constructor(props) {
@@ -28,9 +29,7 @@ class CoffeeApp extends Component {
         loadMap("https://maps.googleapis.com/maps/api/js?key=AIzaSyBKMWcVdV8GszbYDYDuMao5nbgll0adKcA&callback=initMap")
     }
 
-    /**
-     * Initialise the map once the google map script is loaded
-     */
+    // render the map once the component is loaded
     initMap() {
         const self = this;
 
@@ -39,7 +38,7 @@ class CoffeeApp extends Component {
         const map = new window.google.maps.Map(mapArea, {
             center: {lat: 51.7593117, lng: -1.2108251},
             zoom: 16.5,
-            // mapTypeControl: false
+            styles: MapStyles
         });
 
         // infoWindow
@@ -128,7 +127,7 @@ class CoffeeApp extends Component {
                         let location_data = data.response.venues[0];
 
                         let coffeeShopName = `<b>${location_data.name}</b><br>`;
-                        let fourSquare = '<a href="https://foursquare.com/v/'+ location_data.id +'" target="_blank">Go to FourSquare</a>'
+                        let fourSquare = `<a href="https://foursquare.com/v/${location_data.id}target="_blank">Go to FourSquare</a>`
                         self.state.infowindow.setContent(coffeeShopName + fourSquare);
                     })})
 

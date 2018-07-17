@@ -5,13 +5,13 @@ import CoffeeApp from "./CoffeeApp"
 
 
 class App extends Component {
-
+// the only thing a component MUST have is a render method
     render() {
         return (
-            <div>
+            <div className="App">
               <Header />
-                <CoffeeApp />
-                <Footer />
+              <CoffeeApp />
+              <Footer />
             </div>
         )}}
 

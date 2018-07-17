@@ -58,7 +58,7 @@ class CoffeeShopList extends Component {
             )}, this);
 
         return (
-            <div className="search">
+            <div className="filter-box">
                 <input
                   role="search"
                   aria-labelledby="filter"

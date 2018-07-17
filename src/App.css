@@ -3,7 +3,7 @@
   position: relative;
 }
 
-/* HEADER */
+/* HEADER AND FOOTER */
 .header,
 .footer {
   background-color: #F3DE8A;
@@ -32,4 +32,28 @@
 
 .logo {
   width: 80px;
+}
+
+/* FILTERING  */
+.filter-box {
+  padding: 20px;
+  background-color: #F3DE8A;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+
+}
+
+.filter-box ul {
+  list-style-type: none;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+
+}
+
+#map {
+  position: relative;
+  height: 70vw;
 }
