@@ -9,10 +9,36 @@ class CoffeeApp extends Component {
         this.state = {
             "coffeeShopLocations": [
                 {
-                    "name": "Waitrose at Shell",
-                    "position": {"lat": 51.7595132, "lng": -1.2148943},
-                    "streetAddress": "63 London Road, Headington, OX3 7RD"
+                  "name": "Waitrose at Shell",
+                  "position": {"lat": 51.7595132, "lng": -1.2148943},
+                  "streetAddress": "63 London Road, Headington, OX3 7RD"
                 },
+
+                {
+                  "name": "Caffe Nero",
+                  "position": {"lat": 51.7601061, "lng": -1.2111104},
+                  "streetAddress": "120 London Road, Headington, OX3 9AS"
+                },
+
+                {
+                  "name": "Café Bonjour",
+                  "position": {"lat": 51.760345, "lng": -1.2100827},
+                  "streetAddress": "136 London Road, Headington, OX3 9EB"
+                },
+
+                {
+                  "name": "La Croissanterie",
+                  "position": {"lat": 51.7603962, "lng": -1.2110215},
+                  "streetAddress": "3-5 Old High Street, Headington, OX3 9HP"
+                },
+
+                {
+                  "name": "Jacobs & Field",
+                  "position": {"lat": 51.7606492, "lng": -1.211289},
+                  "streetAddress": "15 Old High Street, Headington, OX3 9HP"
+                },
+
+
 
             ],
             // set the following as empty arrays so nothing appears when the page is first loaded
@@ -44,7 +70,7 @@ class CoffeeApp extends Component {
         mapArea.style.height = window.innerHeight + "px";
         const map = new window.google.maps.Map(mapArea, {
             center: {lat: 51.7593117, lng: -1.2108251},
-            zoom: 15,
+            zoom: 16.5,
             // mapTypeControl: false
         });
 
@@ -71,7 +97,7 @@ class CoffeeApp extends Component {
         const coffeeShopLocations = [];
         //set the state for each marker passing in the location as the argument
         this.state.coffeeShopLocations.forEach(function (location) {
-          // longname necessary for geocoding
+          // longname necessary for geocoding and for the filter list
             let longname = location.name;
             let marker = new window.google.maps.Marker({
                 map: map,
@@ -114,7 +140,11 @@ class CoffeeApp extends Component {
         const self = this;
         const clientId = "JDXWAZX2KTQF4QROKYSWXJDJNNPGLGPR5TIG02SLNNGNZXGQ";
         const clientSecret = "HMTE5AG2EXTUT2LK5DKGNE2T5OZSWTMPLQ31F04YC1QIP4EH";
-        let url = "https://api.foursquare.com/v2/venues/search?client_id=" + clientId + "&client_secret=" + clientSecret + "&v=20130815&ll=" + marker.getPosition().lat() + "," + marker.getPosition().lng() + "&limit=1";
+        let url = "https://api.foursquare.com/v2/venues/search?client_id=" +
+          clientId + "&client_secret="
+          + clientSecret + "&v=20130815&ll="
+          + marker.getPosition().lat() + ","
+          + marker.getPosition().lng() + "&limit=1";
 
         // send fetch, and it'll return a promise
         fetch(url)
@@ -128,6 +158,7 @@ class CoffeeApp extends Component {
                     // use the data sent by the FourSquare API to fill in the information
                     response.json().then(function (data) {
                         let location_data = data.response.venues[0];
+
                         let coffeeShopName = `<b>${location_data.name}</b><br>`;
                         let fourSquare = '<a href="https://foursquare.com/v/'+ location_data.id +'" target="_blank">Go to FourSquare</a>'
                         self.state.infowindow.setContent(coffeeShopName + fourSquare);
