@@ -1,50 +1,18 @@
 import React, {Component} from "react";
-
 import CoffeeShopList from "./CoffeeShopList";
+import * as coffeeShops from "./CoffeeShops.json";
 
 class CoffeeApp extends Component {
     constructor(props) {
         super(props);
         // set the state with the locations - I wonder if I could move this into a JSON file for scalability
         this.state = {
-            "coffeeShopLocations": [
-                {
-                  "name": "Waitrose at Shell",
-                  "position": {"lat": 51.7595132, "lng": -1.2148943},
-                  "streetAddress": "63 London Road, Headington, OX3 7RD"
-                },
-
-                {
-                  "name": "Caffe Nero",
-                  "position": {"lat": 51.7601061, "lng": -1.2111104},
-                  "streetAddress": "120 London Road, Headington, OX3 9AS"
-                },
-
-                {
-                  "name": "Café Bonjour",
-                  "position": {"lat": 51.760345, "lng": -1.2100827},
-                  "streetAddress": "136 London Road, Headington, OX3 9EB"
-                },
-
-                {
-                  "name": "La Croissanterie",
-                  "position": {"lat": 51.7603962, "lng": -1.2110215},
-                  "streetAddress": "3-5 Old High Street, Headington, OX3 9HP"
-                },
-
-                {
-                  "name": "Jacobs & Field",
-                  "position": {"lat": 51.7606492, "lng": -1.211289},
-                  "streetAddress": "15 Old High Street, Headington, OX3 9HP"
-                },
-
-
-
-            ],
             // set the following as empty arrays so nothing appears when the page is first loaded
             "map": "",
             "infoWindow": "",
-            "prevMarker": ""
+            "prevMarker": "",
+            // load up the array of locations from the JSON file
+            "coffeeShopLocations": coffeeShops
         };
 
         // need to use bindings so that 'this' is correctly used inside functions (https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56)

@@ -11,6 +11,7 @@ class CoffeeShopList extends Component {
             "locations": "",
             "query": "",
             "": true,
+            "list": true
         };
 
         // bind so 'this' behaves correctly
@@ -34,29 +35,27 @@ class CoffeeShopList extends Component {
         this.setState({
             "locations": locations,
             "query": value
-        });
-    }
+        })};
 
     componentWillMount() {
         this.setState({
             "locations": this.props.coffeeShopLocations
-        });
-    }
+        })};
 
 
     toggleList() {
         this.setState({
             "list": !this.state.list
-        });
-    }
+        })};
 
 
     render() {
         const CoffeeShopList = this.state.locations.map(function (listItem, index) {
             return (
-                <CoffeeShop key={index} openInfoWindow={this.props.openInfoWindow.bind(this)} data={listItem}/>
-            )},
-        this);
+                <CoffeeShop key={index}
+                  openInfoWindow={this.props.openInfoWindow.bind(this)}
+                  data={listItem}/>
+            )}, this);
 
         return (
             <div className="search">
