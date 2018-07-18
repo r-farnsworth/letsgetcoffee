@@ -106,7 +106,7 @@ class CoffeeApp extends Component {
     }
 
 
-     // fetch details of the coffee shop from the foursquare API, and display it inside the marker modal
+     // fetch details of the coffee shop from the foursquare API using url, and display it inside the marker modal
     getCoffeeDetails(marker) {
         const self = this;
         const clientId = "JDXWAZX2KTQF4QROKYSWXJDJNNPGLGPR5TIG02SLNNGNZXGQ";
@@ -131,9 +131,8 @@ class CoffeeApp extends Component {
                     // use the data sent by the FourSquare API to fill in the information
                     response.json().then(function (data) {
                         let location_data = data.response.venues[0];
-
                         let coffeeShopName = `<b>${location_data.name}</b><br>`;
-                        let fourSquare = `<a href="https://foursquare.com/v/${location_data.id}target="_blank">Go to FourSquare</a>`
+                        let fourSquare = `<a href="https://foursquare.com/v/${location_data.id}"target="_blank">Go to FourSquare</a>`
                         self.state.infowindow.setContent(coffeeShopName + fourSquare);
                     })})
 
@@ -141,6 +140,7 @@ class CoffeeApp extends Component {
                     .catch(function (error) {
                       document.write("Data cannot be loaded at this time");
                     })};
+
 
 
     closeInfoWindow() {
