@@ -39,7 +39,7 @@ class CoffeeApp extends Component {
         // mapArea.style.height = window.innerHeight + "px";
         const map = new window.google.maps.Map(mapArea, {
             center: {lat: 51.7593117, lng: -1.2108251},
-            zoom: 16.5,
+            zoom: 16,
             styles: MapStyles
         });
 
@@ -130,10 +130,11 @@ class CoffeeApp extends Component {
 
                     // use the data sent by the FourSquare API to fill in the information
                     response.json().then(function (data) {
-                        let location_data = data.response.venues[0];
-                        let coffeeShopName = `<b>${location_data.name}</b><br>`;
-                        let fourSquare = `<a href="https://foursquare.com/v/${location_data.id}"target="_blank">Go to FourSquare</a>`
-                        self.state.infowindow.setContent(coffeeShopName + fourSquare);
+                        let coffeeShop = data.response.venues[0];
+                        let coffeeShopName = `<strong>${coffeeShop.name}</strong><br>`;
+                        let coffeeShopAddress = `${coffeeShop.location.address}</br>`;
+                        let fourSquare = `<a href="https://foursquare.com/v/${coffeeShop.id}"target="_blank">Go to FourSquare</a>`
+                        self.state.infowindow.setContent(coffeeShopName + coffeeShopAddress + fourSquare);
                     })})
 
                     // pick up any errors

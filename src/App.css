@@ -43,7 +43,7 @@ body {
 .filter-box {
   padding: 20px;
   background-color: #F3DE8A;
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
   display: flex;
   align-content: center;
   justify-content: space-evenly;
@@ -67,7 +67,7 @@ body {
 
 button,
 input {
-  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Open Sans', sans-serif; */
   align-self: center;
   border-radius: 5px;
 }
