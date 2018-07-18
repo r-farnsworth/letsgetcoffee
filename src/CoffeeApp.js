@@ -25,8 +25,10 @@ class CoffeeApp extends Component {
     componentDidMount() {
         // wait until the component has loaded, then invoke initMap()
         window.initMap = this.initMap;
+        // store my API key in a variable. I think this makes the code more easily updatable.
+        const myAPIkey = "AIzaSyBKMWcVdV8GszbYDYDuMao5nbgll0adKcA";
         // load Google Maps with my key - notice that initMap() is passed in as a callback
-        loadMap("https://maps.googleapis.com/maps/api/js?key=AIzaSyBKMWcVdV8GszbYDYDuMao5nbgll0adKcA&callback=initMap")
+        loadMap(`https://maps.googleapis.com/maps/api/js?key=${myAPIkey}&callback=initMap`)
     }
 
     // render the map once the component is loaded
@@ -36,7 +38,6 @@ class CoffeeApp extends Component {
 
 
         const mapArea = document.getElementById('map');
-        // mapArea.style.height = window.innerHeight + "px";
         const map = new window.google.maps.Map(mapArea, {
             center: {lat: 51.7593117, lng: -1.2108251},
             zoom: 16,
@@ -112,7 +113,10 @@ class CoffeeApp extends Component {
         const clientID = "JDXWAZX2KTQF4QROKYSWXJDJNNPGLGPR5TIG02SLNNGNZXGQ";
         const clientSecret = "HMTE5AG2EXTUT2LK5DKGNE2T5OZSWTMPLQ31F04YC1QIP4EH";
 
-
+    // I think I've done this completely differently to everyone I've talked to but
+    // I think it is better to set the clientID and clientSecret as variables as well as the URL. I just feel
+    // like it makes the code cleaner, and if I needed to change my API credentials for whatever reason it would be
+    // easier to do so than having one long URL.
         let url = `https://api.foursquare.com/v2/venues/search?client_id=
           ${clientID}
           &client_secret=${clientSecret}
@@ -159,8 +163,11 @@ class CoffeeApp extends Component {
         return (
             <main className="main-area">
 
-                <CoffeeShopList key="coffee-shop-map" coffeeShopLocations={this.state.coffeeShopLocations} openInfoWindow={this.openInfoWindow}
-                              closeInfoWindow={this.closeInfoWindow}/>
+                <CoffeeShopList key="coffee-shop-map"
+                  coffeeShopLocations={this.state.coffeeShopLocations}
+                  openInfoWindow={this.openInfoWindow}
+                  closeInfoWindow={this.closeInfoWindow}/>
+
                 <div id="map"></div>
 
             </main>
