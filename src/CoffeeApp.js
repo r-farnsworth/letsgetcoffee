@@ -90,8 +90,7 @@ class CoffeeApp extends Component {
         // set the state for the coffee locations
         this.setState({
             "coffeeShopLocations": coffeeShopLocations
-        });
-    }
+        })};
 
     // openWindow marker information
 
