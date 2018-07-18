@@ -163,7 +163,7 @@ class CoffeeApp extends Component {
                 <div id="map"></div>
 
             </main>
-        )}}
+        )}};
 
 export default CoffeeApp;
 

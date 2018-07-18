@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
-import CoffeeApp from "./CoffeeApp"
+import CoffeeApp from "./CoffeeApp";
 
 
 class App extends Component {
@@ -13,6 +13,6 @@ class App extends Component {
               <CoffeeApp />
               <Footer />
             </div>
-        )}}
+        )}};
 
 export default App;

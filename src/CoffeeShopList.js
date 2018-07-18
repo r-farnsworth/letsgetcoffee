@@ -17,7 +17,7 @@ class CoffeeShopList extends Component {
         // bind so 'this' behaves correctly
         this.toggleList = this.toggleList.bind(this);
         this.filterLocations = this.filterLocations.bind(this);
-    }
+      };
 
     //toggle filterlist on and off
     toggleList() {
@@ -58,18 +58,21 @@ class CoffeeShopList extends Component {
                 <CoffeeShop key={index}
                   openInfoWindow={this.props.openInfoWindow.bind(this)}
                   data={listItem}/>
-            )}, this);
+                )}, this);
 
         return (
             <div className="filter-box">
+
               <button
                 className="button"
                 onClick={this.toggleList}>
                   Show/Hide List
               </button>
+
               <ul>
                   {this.state.list && CoffeeShopList}
               </ul>
+
                 <input
                   role="search"
                   aria-labelledby="filter"
@@ -80,10 +83,9 @@ class CoffeeShopList extends Component {
                   value={this.state.query}
                   // calls filterLocations when input is changed
                   onChange={this.filterLocations}
-                />
-
+                  />
 
             </div>
-        )}}
+        )}};
 
 export default CoffeeShopList;
