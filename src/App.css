@@ -13,6 +13,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  text-align: center;
   padding-left: 50px;
   padding-right: 50px;
   position: static;
@@ -23,7 +24,7 @@ body {
 .footer h2 {
   font-family: "Pacifico", cursive;
   color: #272838;
-  margin: 0;
+  margin: auto;
 }
 
 .header h1 {
