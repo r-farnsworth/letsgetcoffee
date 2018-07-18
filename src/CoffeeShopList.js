@@ -19,12 +19,18 @@ class CoffeeShopList extends Component {
         this.filterLocations = this.filterLocations.bind(this);
     }
 
+    //toggle filterlist on and off
+    toggleList() {
+        this.setState({
+            "list": !this.state.list
+        })};
+
     // filter the entries based on user input
     filterLocations(event) {
         const {value} = event.target;
         let locations = [];
         this.props.coffeeShopLocations.forEach(function (location) {
-            if (location.longname.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+            if (location.shopName.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
                 location.marker.setVisible(true);
                 locations.push(location);
             } else {
@@ -43,10 +49,7 @@ class CoffeeShopList extends Component {
         })};
 
 
-    toggleList() {
-        this.setState({
-            "list": !this.state.list
-        })};
+
 
 
     render() {
@@ -59,6 +62,14 @@ class CoffeeShopList extends Component {
 
         return (
             <div className="filter-box">
+              <button
+                className="button"
+                onClick={this.toggleList}>
+                  Show/Hide List
+              </button>
+              <ul>
+                  {this.state.list && CoffeeShopList}
+              </ul>
                 <input
                   role="search"
                   aria-labelledby="filter"
@@ -68,14 +79,10 @@ class CoffeeShopList extends Component {
                   placeholder="Search for coffee"
                   value={this.state.query}
                   // calls filterLocations when input is changed
-                  onChange={this.filterLocations}/>
-                <ul>
-                    {this.state.list && CoffeeShopList}
-                </ul>
-                <button
-                  className="button"
-                  onClick={this.toggleList}>
-                  Show/Hide List</button>
+                  onChange={this.filterLocations}
+                />
+
+
             </div>
         )}}
 

@@ -33,8 +33,10 @@ class CoffeeApp extends Component {
     initMap() {
         const self = this;
 
+
+
         const mapArea = document.getElementById('map');
-        mapArea.style.height = window.innerHeight + "px";
+        // mapArea.style.height = window.innerHeight + "px";
         const map = new window.google.maps.Map(mapArea, {
             center: {lat: 51.7593117, lng: -1.2108251},
             zoom: 16.5,
@@ -53,19 +55,21 @@ class CoffeeApp extends Component {
             "infowindow": InfoWindow
         });
 
-        // window.google.maps.event.addDomListener(window, "resize", function () {
-        //     var center = map.getCenter();
-        //     window.google.maps.event.trigger(map, "resize");
-        //     self.state.map.setCenter(center);
-        // });
+        window.google.maps.event.addListener(window, "resize", function () {
+            const center = map.getCenter();
+            window.google.maps.event.trigger(map, "resize");
+            self.state.map.setCenter(center);
+        });
+
+
 
         // get the locations of the coffee!
 
         const coffeeShopLocations = [];
         //set the state for each marker passing in the location as the argument
         this.state.coffeeShopLocations.forEach(function (location) {
-          // longname necessary for geocoding and for the filter list
-            let longname = location.name;
+          // shopName necessary for geocoding and for the filter list
+            let shopName = location.name;
             let marker = new window.google.maps.Marker({
                 map: map,
                 position: new window.google.maps.LatLng(location.position),
@@ -76,7 +80,7 @@ class CoffeeApp extends Component {
                 self.openInfoWindow(marker);
             });
 
-            location.longname = longname;
+            location.shopName = shopName;
             location.marker = marker;
             location.display = true;
             coffeeShopLocations.push(location);
@@ -150,13 +154,13 @@ class CoffeeApp extends Component {
     // finally, render the UI
     render() {
         return (
-            <div>
+            <main className="main-area">
 
                 <CoffeeShopList key="100" coffeeShopLocations={this.state.coffeeShopLocations} openInfoWindow={this.openInfoWindow}
                               closeInfoWindow={this.closeInfoWindow}/>
                 <div id="map"></div>
 
-            </div>
+            </main>
         )}}
 
 export default CoffeeApp;
