@@ -97,24 +97,24 @@ class CoffeeApp extends Component {
     openInfoWindow(marker) {
         this.closeInfoWindow();
         this.state.infowindow.open(this.state.map, marker);
-        marker.setAnimation(window.google.maps.Animation.BOUNCE);
+        marker.setAnimation(window.google.maps.Animation.DROP);
         this.setState({
             'prevmarker': marker
         });
 
         this.getCoffeeDetails(marker);
-    }
+      }
 
 
      // fetch details of the coffee shop from the foursquare API using url, and display it inside the marker modal
     getCoffeeDetails(marker) {
         const self = this;
-        const clientId = "JDXWAZX2KTQF4QROKYSWXJDJNNPGLGPR5TIG02SLNNGNZXGQ";
+        const clientID = "JDXWAZX2KTQF4QROKYSWXJDJNNPGLGPR5TIG02SLNNGNZXGQ";
         const clientSecret = "HMTE5AG2EXTUT2LK5DKGNE2T5OZSWTMPLQ31F04YC1QIP4EH";
 
 
         let url = `https://api.foursquare.com/v2/venues/search?client_id=
-          ${clientId}
+          ${clientID}
           &client_secret=${clientSecret}
           &v=20130815&ll=${marker.getPosition().lat()},
           ${marker.getPosition().lng()}&limit=1`;
