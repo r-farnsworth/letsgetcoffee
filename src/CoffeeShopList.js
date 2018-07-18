@@ -61,7 +61,7 @@ class CoffeeShopList extends Component {
                 )}, this);
 
         return (
-            <div className="filter-box">
+            <div className="filter-box" aria-label="filter-box">
 
               <button
                 className="button"
@@ -75,7 +75,7 @@ class CoffeeShopList extends Component {
 
                 <input
                   role="search"
-                  aria-labelledby="filter"
+                  aria-label="filter"
                   id="search-field"
                   className="search-field"
                   type="text"
