@@ -1,6 +1,7 @@
 {
   "name": "letsgetcoffee",
   "version": "0.1.0",
+  "homepage": "http://r-farnsworth.github.io/letsgetcoffee",
   "private": true,
   "dependencies": {
     "react": "^16.4.1",
