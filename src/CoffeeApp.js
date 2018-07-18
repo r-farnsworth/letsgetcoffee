@@ -111,11 +111,13 @@ class CoffeeApp extends Component {
         const self = this;
         const clientId = "JDXWAZX2KTQF4QROKYSWXJDJNNPGLGPR5TIG02SLNNGNZXGQ";
         const clientSecret = "HMTE5AG2EXTUT2LK5DKGNE2T5OZSWTMPLQ31F04YC1QIP4EH";
-        let url = "https://api.foursquare.com/v2/venues/search?client_id=" +
-          clientId + "&client_secret="
-          + clientSecret + "&v=20130815&ll="
-          + marker.getPosition().lat() + ","
-          + marker.getPosition().lng() + "&limit=1";
+
+
+        let url = `https://api.foursquare.com/v2/venues/search?client_id=
+          ${clientId}
+          &client_secret=${clientSecret}
+          &v=20130815&ll=${marker.getPosition().lat()},
+          ${marker.getPosition().lng()}&limit=1`;
 
         // send fetch, and it'll return a promise
         fetch(url)
@@ -137,7 +139,7 @@ class CoffeeApp extends Component {
 
                     // pick up any errors
                     .catch(function (error) {
-                      self.state.infowindow.setContent("Data cannot be loaded at this time");
+                      document.write("Data cannot be loaded at this time");
                     })};
 
 
@@ -156,7 +158,7 @@ class CoffeeApp extends Component {
         return (
             <main className="main-area">
 
-                <CoffeeShopList key="100" coffeeShopLocations={this.state.coffeeShopLocations} openInfoWindow={this.openInfoWindow}
+                <CoffeeShopList key="coffee-shop-map" coffeeShopLocations={this.state.coffeeShopLocations} openInfoWindow={this.openInfoWindow}
                               closeInfoWindow={this.closeInfoWindow}/>
                 <div id="map"></div>
 
