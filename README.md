@@ -1,4 +1,4 @@
-#Let's Get Coffee!
+# Let's Get Coffee!
 
 Project created as part of the [Udacity Front End Nanodegree](http://www.udacity.com)
 This map shows the places I most frequently get coffee in my local area: [Headington](https://en.wikipedia.org/wiki/Headington), which lies to the north east of Oxford city centre. Clicking on the markers takes the user through to the location's entry on FourSquare.
