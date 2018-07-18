@@ -55,6 +55,7 @@ class CoffeeShopList extends Component {
     render() {
         const CoffeeShopList = this.state.locations.map(function (listItem, index) {
             return (
+              // keys always need to be provided for list items. https://reactjs.org/docs/lists-and-keys.html
                 <CoffeeShop key={index}
                   openInfoWindow={this.props.openInfoWindow.bind(this)}
                   data={listItem}/>
@@ -65,7 +66,8 @@ class CoffeeShopList extends Component {
 
               <button
                 className="button"
-                onClick={this.toggleList}>
+                onClick={this.toggleList}
+                >
                   Show/Hide List
               </button>
 
@@ -79,7 +81,7 @@ class CoffeeShopList extends Component {
                   id="search-field"
                   className="search-field"
                   type="text"
-                  placeholder="Search for coffee"
+                  placeholder="Search for coffee shops"
                   value={this.state.query}
                   // calls filterLocations when input is changed
                   onChange={this.filterLocations}

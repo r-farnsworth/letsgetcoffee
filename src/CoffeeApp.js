@@ -5,13 +5,11 @@ import MapStyles from "./MapStyles.js";
 
 class CoffeeApp extends Component {
     constructor(props) {
+      //always need to set super on a constructor function
         super(props);
-        // set the state with the locations - I wonder if I could move this into a JSON file for scalability
         this.state = {
-            // set the following as empty arrays so nothing appears when the page is first loaded
-            "map": "",
+
             "infoWindow": "",
-            "prevMarker": "",
             // load up the array of locations from the JSON file
             "coffeeShopLocations": coffeeShops
         };
@@ -47,7 +45,7 @@ class CoffeeApp extends Component {
         // infoWindow
         const InfoWindow = new window.google.maps.InfoWindow({});
         //event handler for closing the info window
-        window.google.maps.event.addListener(InfoWindow, 'closeclick', function () {
+        window.google.maps.event.addListener(InfoWindow, "closeclick", function () {
             self.closeInfoWindow();
         });
 
@@ -64,8 +62,7 @@ class CoffeeApp extends Component {
 
 
 
-        // get the locations of the coffee!
-
+        // get the locations of the coffee! start with an empty array...
         const coffeeShopLocations = [];
         //set the state for each marker passing in the location as the argument
         this.state.coffeeShopLocations.forEach(function (location) {
@@ -77,7 +74,7 @@ class CoffeeApp extends Component {
                 animation: window.google.maps.Animation.DROP
             });
 
-            marker.addListener('click', function () {
+            marker.addListener("click", function () {
                 self.openInfoWindow(marker);
             });
 
@@ -99,7 +96,7 @@ class CoffeeApp extends Component {
         this.state.infowindow.open(this.state.map, marker);
         marker.setAnimation(window.google.maps.Animation.DROP);
         this.setState({
-            'prevmarker': marker
+            "prevMarker": marker
         });
 
         this.getCoffeeDetails(marker);
@@ -148,11 +145,11 @@ class CoffeeApp extends Component {
 
 
     closeInfoWindow() {
-        if (this.state.prevmarker) {
-            this.state.prevmarker.setAnimation(null);
+        if (this.state.prevMarker) {
+            this.state.prevMarker.setAnimation(null);
         }
         this.setState({
-            "prevmarker": ""
+            "prevMarker": ""
         });
         this.state.infowindow.close();
     }
