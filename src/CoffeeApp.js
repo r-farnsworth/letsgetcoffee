@@ -3,7 +3,16 @@ import CoffeeShopList from "./CoffeeShopList";
 import * as coffeeShops from "./CoffeeShops.json";
 import MapStyles from "./MapStyles.js";
 
+// in case there's an authentication error on google maps
+// https://developers.google.com/maps/documentation/javascript/events#auth-errors
+window.gm_authFailure = () => {
+  window.gm_authFailure = this.gm_authFailure;
+  const mapDiv = document.querySelector("#map");
+  mapDiv.innerHTML = "<h2>Google Maps authentication error</h2>";
+}
+
 class CoffeeApp extends Component {
+
     constructor(props) {
       //always need to set super on a constructor function
         super(props);
@@ -18,6 +27,7 @@ class CoffeeApp extends Component {
         this.initMap = this.initMap.bind(this);
         this.openInfoWindow = this.openInfoWindow.bind(this);
         this.closeInfoWindow = this.closeInfoWindow.bind(this);
+
     }
 
 
@@ -30,12 +40,7 @@ class CoffeeApp extends Component {
         loadMap(`https://maps.googleapis.com/maps/api/js?key=${myAPIkey}&callback=initMap`)
     }
 
-    // in case there's an authentication error on google maps
-    // https://developers.google.com/maps/documentation/javascript/events#auth-errors
-    gm_authFailure = () => {
-      const mapDiv = document.querySelector("#map");
-      mapDiv.innerHTML = "<h2>Google Maps authentication error</h2>";
-    }
+
 
     // render the map once the component is loaded
     initMap() {
@@ -147,8 +152,10 @@ class CoffeeApp extends Component {
                   )})
 
                     // pick up any errors
-                    .catch(error => {
-                      this.setState({error:"Data cannot be loaded at this time", error});
+                    // I initially passed in error as an argument but React warned about duplicate keys,
+                    // so I thought I should change it.
+                    .catch(err => {
+                      this.setState({error:"Data cannot be loaded at this time", err});
                       self.state.infoWindow.setContent("Data cannot be loaded; please check your network connection")
                     })};
 
