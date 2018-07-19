@@ -123,11 +123,6 @@ class CoffeeApp extends Component {
         fetch(url)
             .then(
                 function (response) {
-                    if (!response.status) {
-                        self.state.infowindow.setContent("Data cannot be loaded at this time");
-                        return;
-                    }
-
                     // use the data sent by the FourSquare API to fill in the information
                     response.json().then(function (data) {
                         let coffeeShop = data.response.venues[0];
@@ -138,8 +133,8 @@ class CoffeeApp extends Component {
                     })})
 
                     // pick up any errors
-                    .catch(function (error) {
-                      document.write("Data cannot be loaded at this time");
+                    .catch(error => {
+                      this.setState({error:"Data cannot be loaded at this time", error});
                     })};
 
 
@@ -181,4 +176,11 @@ function loadMap(src) {
         document.write("Error: Google Maps cannot be loaded at this time. Check your internet connection and try again.");
     };
     ref.parentNode.insertBefore(script, ref);
+}
+
+// in case there's an authentication error on google MapStyles
+// https://developers.google.com/maps/documentation/javascript/events#auth-errors
+function gm_authFailure() {
+  const mapDiv = document.querySelector("#map");
+  mapDiv.innerHTML = "<h2>Google Maps authentication error</h2>";
 }
