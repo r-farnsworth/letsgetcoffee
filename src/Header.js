@@ -4,8 +4,8 @@ import Coffee from "./assets/coffee-solid.svg";
 
 
 
-class Header extends Component {
-  render() {
+
+  function Header() {
     return (
       <div className="header">
         <img src={Coffee} className="logo" alt="coffee cup logo"/>
@@ -14,6 +14,6 @@ class Header extends Component {
       </div>
     );
   }
-}
+
 
 export default Header;
