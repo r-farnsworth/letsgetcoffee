@@ -7,7 +7,10 @@ This map shows the places I most frequently get coffee in my local area: [Headin
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 1. Clone this directory
-2. Run `npm install` followed by `npm run start`. The app will be launched automatically.
+2. Run `npm install` followed by `npm run start` or `yarn start`. The app will be launched automatically.
+
+## Service worker
+`create-react-app` includes a service worker in the production build. To run a production build, and thus install the service worker, run `yarn build` in the project directory.
 
 ## APIs
 The Google Maps and FourSquare APIs were used in the creation of this app.
