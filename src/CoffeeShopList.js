@@ -8,7 +8,7 @@ class CoffeeShopList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            "locations": "",
+            "locations": this.props.coffeeShopLocations,
             "query": "",
             "": true,
             "list": true
@@ -43,10 +43,10 @@ class CoffeeShopList extends Component {
             "query": value
         })};
 
-    componentWillMount() {
-        this.setState({
-            "locations": this.props.coffeeShopLocations
-        })};
+    // componentWillMount() {
+    //     this.setState({
+    //
+    //     })};
 
 
 
