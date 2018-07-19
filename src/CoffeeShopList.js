@@ -43,14 +43,6 @@ class CoffeeShopList extends Component {
             "query": value
         })};
 
-    // componentWillMount() {
-    //     this.setState({
-    //
-    //     })};
-
-
-
-
 
     render() {
         const CoffeeShopList = this.state.locations.map(function (listItem, index) {
