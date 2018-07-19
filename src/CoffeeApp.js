@@ -94,7 +94,7 @@ class CoffeeApp extends Component {
     openInfoWindow(marker) {
         this.closeInfoWindow();
         this.state.infowindow.open(this.state.map, marker);
-        marker.setAnimation(window.google.maps.Animation.DROP);
+        marker.setAnimation(window.google.maps.Animation.BOUNCE);
         this.setState({
             "prevMarker": marker
         });
@@ -149,6 +149,14 @@ class CoffeeApp extends Component {
         this.state.infowindow.close();
     }
 
+    // in case there's an authentication error on google maps
+    // https://developers.google.com/maps/documentation/javascript/events#auth-errors
+
+    gm_authFailure() {
+      const mapDiv = document.querySelector("#map");
+      mapDiv.innerHTML = "<h2>Google Maps authentication error</h2>";
+    }
+
     // finally, render the UI
     render() {
         return (
@@ -176,11 +184,4 @@ function loadMap(src) {
         document.write("Error: Google Maps cannot be loaded at this time. Check your internet connection and try again.");
     };
     ref.parentNode.insertBefore(script, ref);
-}
-
-// in case there's an authentication error on google MapStyles
-// https://developers.google.com/maps/documentation/javascript/events#auth-errors
-function gm_authFailure() {
-  const mapDiv = document.querySelector("#map");
-  mapDiv.innerHTML = "<h2>Google Maps authentication error</h2>";
 }
