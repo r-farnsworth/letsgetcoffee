@@ -180,7 +180,7 @@ function loadMap(src) {
     const script = window.document.createElement("script");
     script.src = src;
     script.async = true;
-    script.onError = () => {
+    script.onerror = () => {
         document.write("Error: Google Maps cannot be loaded at this time. Check your internet connection and try again.");
     };
     ref.parentNode.insertBefore(script, ref);
