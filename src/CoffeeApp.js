@@ -20,6 +20,7 @@ class CoffeeApp extends Component {
         this.closeInfoWindow = this.closeInfoWindow.bind(this);
     }
 
+
     componentDidMount() {
         // wait until the component has loaded, then invoke initMap()
         window.initMap = this.initMap;
@@ -27,6 +28,13 @@ class CoffeeApp extends Component {
         const myAPIkey = "AIzaSyBKMWcVdV8GszbYDYDuMao5nbgll0adKcA";
         // load Google Maps with my key - notice that initMap() is passed in as a callback
         loadMap(`https://maps.googleapis.com/maps/api/js?key=${myAPIkey}&callback=initMap`)
+    }
+
+    // in case there's an authentication error on google maps
+    // https://developers.google.com/maps/documentation/javascript/events#auth-errors
+    gm_authFailure = () => {
+      const mapDiv = document.querySelector("#map");
+      mapDiv.innerHTML = "<h2>Google Maps authentication error</h2>";
     }
 
     // render the map once the component is loaded
@@ -125,16 +133,23 @@ class CoffeeApp extends Component {
                 function (response) {
                     // use the data sent by the FourSquare API to fill in the information
                     response.json().then(function (data) {
+                      if (response.ok) {
+
                         let coffeeShop = data.response.venues[0];
                         let coffeeShopName = `<strong>${coffeeShop.name}</strong><br>`;
                         let coffeeShopAddress = `${coffeeShop.location.address}</br>`;
                         let fourSquare = `<a href="https://foursquare.com/v/${coffeeShop.id}"target="_blank">Go to FourSquare</a>`
                         self.state.infowindow.setContent(coffeeShopName + coffeeShopAddress + fourSquare);
-                    })})
+                      } else {
+                        self.state.infoWindow.setContent("Sorry; FourSquare could not be loaded at this time")
+                      }
+                    }
+                  )})
 
                     // pick up any errors
                     .catch(error => {
                       this.setState({error:"Data cannot be loaded at this time", error});
+                      self.state.infoWindow.setContent("Data cannot be loaded; please check your network connection")
                     })};
 
 
@@ -149,13 +164,7 @@ class CoffeeApp extends Component {
         this.state.infowindow.close();
     }
 
-    // in case there's an authentication error on google maps
-    // https://developers.google.com/maps/documentation/javascript/events#auth-errors
 
-    gm_authFailure() {
-      const mapDiv = document.querySelector("#map");
-      mapDiv.innerHTML = "<h2>Google Maps authentication error</h2>";
-    }
 
     // finally, render the UI
     render() {
