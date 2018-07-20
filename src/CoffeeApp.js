@@ -146,7 +146,7 @@ class CoffeeApp extends Component {
                         let fourSquare = `<a href="https://foursquare.com/v/${coffeeShop.id}"target="_blank">Go to FourSquare</a>`
                         self.state.infowindow.setContent(coffeeShopName + coffeeShopAddress + fourSquare);
                       } else {
-                        self.state.infoWindow.setContent("Sorry; FourSquare could not be loaded at this time")
+                        self.state.infowindow.setContent("Sorry; FourSquare could not be loaded at this time")
                       }
                     }
                   )})
@@ -156,7 +156,7 @@ class CoffeeApp extends Component {
                     // so I thought I should change it.
                     .catch(err => {
                       this.setState({error:"Data cannot be loaded at this time", err});
-                      self.state.infoWindow.setContent("Data cannot be loaded; please check your network connection")
+                      self.state.infowindow.setContent("Data cannot be loaded; please check your network connection")
                     })};
 
 
