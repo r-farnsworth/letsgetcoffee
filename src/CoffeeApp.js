@@ -34,6 +34,8 @@ class CoffeeApp extends Component {
     componentDidMount() {
         // wait until the component has loaded, then invoke initMap()
         window.initMap = this.initMap;
+        // THANK YOU, ANONYMOUS REVIEWER!!!! Can't believe I didn't spot this but we live and learn
+        window.gm_authFailure = this.gm_authFailure;
         // store my API key in a variable. I think this makes the code more easily updatable.
         const myAPIkey = "AIzaSyBKMWcVdV8GszbYDYDuMao5nbgll0adKcA";
         // load Google Maps with my key - notice that initMap() is passed in as a callback
